@@ -20,7 +20,7 @@ Route::get('/', function () {
 
     switch (funcao_usuario_atual()) {
         case (new \App\src\Usuarios\Admins())->getFuncao() :
-            return redirect()->route('admin.home');
+            return redirect()->route('admin.pacotes.index');
         default :
         {
             auth()->logout();

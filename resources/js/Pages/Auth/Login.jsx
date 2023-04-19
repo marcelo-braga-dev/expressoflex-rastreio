@@ -2,6 +2,7 @@ import {useEffect} from 'react';
 import GuestLayout from '@/Layouts/GuestLayout';
 import {Head, useForm} from '@inertiajs/react';
 import {Checkbox, FormControlLabel, TextField} from "@mui/material";
+import * as React from "react";
 
 export default function Login({status}) {
     const {data, setData, post, processing, errors, reset} = useForm({
@@ -26,7 +27,11 @@ export default function Login({status}) {
         <GuestLayout>
             <Head title="Log in"/>
             {status && <div className="mb-4 font-medium text-sm text-green-600">{status}</div>}
-
+            <div className="row justify-content-center">
+                <div className="col-auto">
+                    <img src="/storage/crm/imagens/logo.jpeg" className="" width="200" alt="Logo"/>
+                </div>
+            </div>
             <form onSubmit={submit}>
                 <TextField fullWidth
                            className="mt-4"

@@ -9,10 +9,10 @@ export default function Layout({children, titlePage, container, voltar, menu, su
     return (
         <>
             <Head><title>{titlePage}</title></Head>
-            <Sidebar menuSidebar={menu} submenuSidebar={submenu}/>
+            {/*<Sidebar menuSidebar={menu} submenuSidebar={submenu}/>*/}
 
             <main className="main-content">
-                <Navbar titlePage={titlePage}/>
+                <Navbar titlePage={titlePage} menuNavbar={menu}/>
                 <div className="container-fluid mb-8 mt-3">
                     {container ?
                         voltar ?

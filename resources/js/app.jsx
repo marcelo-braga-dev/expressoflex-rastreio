@@ -16,6 +16,8 @@ import '../assets/argon/bootstrap5/js/core/popper.min';
 import '../assets/argon/bootstrap5/js/core/bootstrap.min';
 import '../assets/argon/bootstrap5/js/argon-dashboard.min';
 
+import '../css/style.css';
+
 import { createRoot } from 'react-dom/client';
 import { createInertiaApp } from '@inertiajs/react';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';

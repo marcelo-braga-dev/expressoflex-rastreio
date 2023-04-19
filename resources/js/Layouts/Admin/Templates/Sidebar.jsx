@@ -10,8 +10,23 @@ export default function Sidebar({menuSidebar, submenuSidebar}) {
             'menu': 'Registros',
             'url': route('admin.home'),
             'tag': 'submenu'
-        }]
-    },];
+        }],
+    }, {
+        'menu': 'Pacotes',
+        'tag': 'pacotes',
+        'icone': 'fas fa-angle-double-right',
+        'submenu': [{
+            'menu': 'Cadastrados',
+            'url': route('admin.pacotes.index'),
+            'tag': 'cadastrados'
+        }, {
+            'menu': 'Cadastrar',
+            'url': route('admin.pacotes.create'),
+            'tag': 'cadastrar'
+        }
+        ],
+    },
+    ];
 
     return (
         <aside id="sidenav-main"
@@ -52,7 +67,10 @@ export default function Sidebar({menuSidebar, submenuSidebar}) {
                                     <a href={url} key={i} className="text-sm text-muted">
                                         <div className="accordion-body p-0 ms-5 mb-2">
                                                 <span className="nav-link-text"
-                                                      style={tag === submenuSidebar ? {color: 'black', fontWeight: 600} : {}}>
+                                                      style={tag === submenuSidebar ? {
+                                                          color: 'black',
+                                                          fontWeight: 600
+                                                      } : {}}>
                                                     {menu}
                                                 </span>
                                         </div>
