@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('endereco_destinatario');
             $table->string('identificacao')->nullable();
             $table->timestamp('status_data');
-            $table->timestamp('data');
+            $table->timestamp('data')->nullable();
             $table->string('status', 32);
             $table->string('anotacoes')->nullable();
             $table->boolean('sinistro')->default(false);
