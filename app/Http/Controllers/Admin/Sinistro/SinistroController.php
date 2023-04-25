@@ -17,9 +17,10 @@ class SinistroController extends Controller
     public function index()
     {
         $sinistros = (new Sinistros())->sinistros();
+        $status = (new SinistrosStatus())->status();
 
         return Inertia::render('Admin/Sinistro/Index',
-            compact('sinistros'));
+            compact('sinistros', 'status'));
     }
 
     public function show($id)

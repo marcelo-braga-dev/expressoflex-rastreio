@@ -112,6 +112,7 @@ class Sinistros extends Model
             'vendedor' => (new Pacotes())->newQuery()->find($item->pacotes_id)->nome_vendedor ?? '-',
             'motoboy' => $item->motoboy,
             'status' => $status[$item->status] ?? '-',
+            'status_id' => $item->status,
             'data' => date('d/m/y H:i', strtotime($item->data)),
             'anotacoes' => $item->anotacoes,
         ];
