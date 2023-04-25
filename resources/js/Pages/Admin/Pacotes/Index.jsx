@@ -12,9 +12,20 @@ export default function ({pacotes, status}) {
         })
     }
 
+    function pesquisar(valor) {
+        if (valor.length > 4) {console.log('valor')
+            axios.get(route('admin')).then(response => {
+
+            })
+        }
+    }
+
     return (
         <Layout container titlePage="Pacotes" menu="pacotes" submenu="cadastrados">
-            <div className="row justify-content-end">
+            <div className="row justify-content-between">
+                <div className="col-auto">
+                    <TextField size="small" onChange={e => pesquisar(e.target.value)}/>
+                </div>
                 <div className="col-auto">
                     <a className="btn btn-primary" href={route('admin.pacotes.create')}>Cadastrar Pacote</a>
                 </div>
@@ -24,6 +35,7 @@ export default function ({pacotes, status}) {
                     <thead>
                     <tr>
                         <th>Data Status</th>
+                        <th className="text-center">Código</th>
                         <th>Vendedor</th>
                         <th>Status</th>
                         <th>Endereço</th>
@@ -37,6 +49,7 @@ export default function ({pacotes, status}) {
                         return (
                             <tr key={index}>
                                 <td>{item.status_data}</td>
+                                <td className="text-center">{item.codigo}</td>
                                 <th className="text-wrap">{item.vendedor}</th>
                                 <td className="text-wrap px-3">
                                     <TextField label="Status" select className="bg-white"

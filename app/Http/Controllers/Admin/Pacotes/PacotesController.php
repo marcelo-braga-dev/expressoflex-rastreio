@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Pacotes;
 use App\Models\PacotesHistoricos;
 use App\Models\PacotesStatus;
+use App\src\Pacotes\CodigoPacote;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -16,7 +17,8 @@ class PacotesController extends Controller
         $pacotes = (new Pacotes())->pacotes();
         $status = (new PacotesStatus())->status();
 
-        return Inertia::render('Admin/Pacotes/Index', compact('pacotes', 'status'));
+        return Inertia::render('Admin/Pacotes/Index',
+            compact('pacotes', 'status'));
     }
 
     public function show($id)
@@ -24,7 +26,8 @@ class PacotesController extends Controller
         $pacote = (new Pacotes())->find($id);
         $historico = (new PacotesHistoricos())->historico($id);
 
-        return Inertia::render('Admin/Pacotes/Show', compact('pacote', 'historico'));
+        return Inertia::render('Admin/Pacotes/Show',
+            compact('pacote', 'historico'));
     }
 
     public function create()
@@ -36,7 +39,10 @@ class PacotesController extends Controller
 
     public function store(Request $request)
     {
-        (new Pacotes())->create($request);
+        $cod = (new CodigoPacote())->gerar();
+
+        $id = (new Pacotes())->create($request, $cod);
+        (new PacotesHistoricos())->create($id, $request->status);
 
         modalSucesso('Pacote Cadastrado com Sucesso!');
         return redirect()->route('admin.pacotes.index');

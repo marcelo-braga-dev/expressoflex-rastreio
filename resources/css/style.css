@@ -6,3 +6,11 @@
 .text-primary {
     color: #394279 !important;
 }
+
+.btn-primary {
+    background-color: #394279;
+}
+
+.btn-primary:hover {
+    background-color: rgba(57, 66, 121, 0.9);
+}

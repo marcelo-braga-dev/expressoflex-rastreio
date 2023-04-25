@@ -15,7 +15,7 @@ class SinistrosHistoricos extends Model
         'anotacoes'
     ];
 
-    public function historicos($id)
+    public function historico($id)
     {
         $status = (new SinistrosStatus())->nomes();
 

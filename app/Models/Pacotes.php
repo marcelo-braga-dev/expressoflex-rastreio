@@ -10,6 +10,7 @@ class Pacotes extends Model
     use HasFactory;
 
     protected $fillable = [
+        'codigo',
         'nome_vendedor',
         'endereco_destinatario',
         'identificacao',
@@ -20,10 +21,11 @@ class Pacotes extends Model
         'sinistro',
     ];
 
-    public function create($dados)
+    public function create($dados, $cod)
     {
-        $this->newQuery()
+        return $this->newQuery()
             ->create([
+                'codigo' => $cod,
                 'nome_vendedor' => $dados->nome_vendedor,
                 'endereco_destinatario' => $dados->endereco_destinatario,
                 'identificacao' => $dados->identificacao,
@@ -31,7 +33,7 @@ class Pacotes extends Model
                 'status' => $dados->status,
                 'anotacoes' => $dados->anotacoes,
                 'status_data' => now()
-            ]);
+            ])->id;
     }
 
     public function pacotes()
@@ -68,6 +70,7 @@ class Pacotes extends Model
     {
         return [
             'id' => $item->id,
+            'codigo' => $item->codigo,
             'vendedor' => $item->nome_vendedor,
             'endereco' => $item->endereco_destinatario,
             'identificacao' => $item->identificacao,
@@ -79,5 +82,31 @@ class Pacotes extends Model
             'data_cadastro' => date('d/m/y H:i', strtotime($item->created_at)),
             'status_data' => date('d/m/y H:i', strtotime($item->status_data)),
         ];
+    }
+
+    public function updateSinistro($id, bool $status)
+    {
+        $this->newQuery()
+            ->find($id)
+            ->update([
+                'sinistro' => $status
+            ]);
+    }
+
+    public function pesquisar($pesquisa)
+    {
+        return $this->newQuery()
+            ->where('endereco_destinatario', 'like', '%' . $pesquisa . '%')
+            ->orWhere('codigo', 'like', '%' . $pesquisa . '%')
+            ->orWhere('nome_vendedor', 'like', '%' . $pesquisa . '%')
+            ->get()
+            ->transform(function ($item) {
+                return [
+                    'id' => $item->id,
+                    'codigo' => $item->codigo,
+                    'vendedor' => $item->nome_vendedor,
+                    'endereco' => $item->endereco_destinatario,
+                ];
+            });
     }
 }

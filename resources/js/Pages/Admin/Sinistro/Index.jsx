@@ -8,9 +8,11 @@ export default function ({sinistros}) {
                     <thead>
                     <tr>
                         <th>Data</th>
+                        <th className="text-center">Código</th>
                         <th>Motoboy</th>
                         <th>Vendedor</th>
                         <th>Status</th>
+                        <th>Reembolso</th>
                         <th>Anotações</th>
                         <th></th>
                     </tr>
@@ -20,9 +22,11 @@ export default function ({sinistros}) {
                         return (
                             <tr key={index}>
                                 <td className="col-1">{item.data}</td>
-                                <th className="text-wrap">{item.motoboy}</th>
+                                <td className="col-1 text-center">{item.codigo}</td>
+                                <td className="text-wrap font-weight-bold">{item.motoboy}</td>
                                 <td>{item.vendedor}</td>
                                 <td>{item.status}</td>
+                                <td>R$ {item.reembolso}</td>
                                 <td className="text-wrap">{item.anotacoes}</td>
                                 <td>
                                     <a className="btn btn-primary m-0 py-1"

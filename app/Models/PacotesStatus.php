@@ -10,7 +10,6 @@ class PacotesStatus extends Model
     use HasFactory;
 
     protected $fillable = [
-        'chave',
         'valor',
         'descricao',
     ];
@@ -21,7 +20,8 @@ class PacotesStatus extends Model
             ->transform(function ($item) {
                 return [
                     'id' => $item->id,
-                    'nome' => $item->valor
+                    'nome' => $item->valor,
+                    'descricao' => $item->descricao
                 ];
             });
     }
@@ -33,7 +33,11 @@ class PacotesStatus extends Model
 
         $response = [];
         foreach ($items as $item) {
-            $response[$item->id] = $item->valor;
+            $response[$item->id] = [
+                'id' => $item->id,
+                'nome' => $item->valor,
+                'descricao' => $item->descricao
+            ];
         }
         return $response;
     }

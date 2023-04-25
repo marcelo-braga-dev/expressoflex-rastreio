@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -14,6 +13,8 @@ return new class extends Migration
         Schema::create('sinistros', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('pacotes_id');
+            $table->float('reembolso', 8, 2);
+            $table->string('codigo', 32)->unique();
             $table->string('motoboy');
             $table->integer('status');
             $table->timestamp('data');

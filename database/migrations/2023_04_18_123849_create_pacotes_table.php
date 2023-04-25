@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('pacotes', function (Blueprint $table) {
             $table->id();
+            $table->string('codigo', 16)->unique();
             $table->string('nome_vendedor');
             $table->string('endereco_destinatario');
             $table->string('identificacao')->nullable();

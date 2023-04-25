@@ -16,7 +16,7 @@ export default function Navbar({titlePage, menuNavbar}) {
 
     // MENU PERFIL
     const settings = [
-        // {title: 'Perfil', url: route('admin.home', 0)}
+        {title: 'Usuários', url: route('admin.usuarios.index')}
     ];
 
     const [anchorElUser, setAnchorElUser] = useState(null);
@@ -30,85 +30,71 @@ export default function Navbar({titlePage, menuNavbar}) {
     };
 
     function itemMenu(menu) {
-        return menu === menuNavbar ? 'mx-3 font-weight-bold text-decoration-underline' : 'mx-3'
+        return menu === menuNavbar ? 'btn btn-primary mt-2 mb-0 mx-3 btn-sm px-3' : 'btn btn-link mt-2 mb-0 mx-3 text-primary'
     }
 
     return (
         <nav className="navbar navbar-main navbar-expand-lg pb-3 bg-primary" data-scroll="false">
-            <div className="container-fluid mt-2">
-                <div className=" bg-white p-2 rounded">
-                    <img src="/storage/crm/imagens/logo.jpeg" className="" width="100" alt="Logo"/>
-                </div>
-
-                {/*<nav aria-label="breadcrumb">*/}
-                {/*    <h6 className="font-weight-bolder text-primary mb-0">{titlePage}</h6>*/}
-                {/*</nav>*/}
-                <div className="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
-                    <div className="ms-md-auto">
+            {/*<div className=" mt-2">*/}
+                <div className="row row-cols-3 align-items-center w-100 justify-content-around">
+                    <div className="col-auto d-none d-md-block  bg-white p-2 rounded">
+                        <a href="/">
+                        <img src="/storage/crm/imagens/logo.jpeg" className="" width="100" alt="Logo"/>
+                        </a>
+                    </div>
+                    <div className="col-auto">
                         <a className={itemMenu('pacotes')} href={route('admin.pacotes.index')}>
                             Pacotes</a>
                         <a className={itemMenu('sinistros')} href={route('admin.sinistros.index')}>
                             Sinistros
                         </a>
                     </div>
-                    <ul className="navbar-nav justify-content-around">
+                    <div className="col-auto" id="navbar">
+                        <ul className="navbar-nav justify-content-around">
 
-                        {/*HamburguemMenu*/}
-                        <li className="nav-item d-xl-none mx-2 d-flex align-items-center">
-                            <div className="nav-link text-white p-0" id="iconNavbarSidenav">
-                                <div className="sidenav-toggler-inner">
-                                    <i className="sidenav-toggler-line bg-white"></i>
-                                    <i className="sidenav-toggler-line bg-white"></i>
-                                    <i className="sidenav-toggler-line bg-white"></i>
-                                </div>
-                            </div>
-                        </li>
-
-                        {/*ChatInterno*/}
-                        <li className="nav-item dropdown mx-3 d-flex align-items-center">
-
-                        </li>
-
-                        <li className="nav-item d-flex align-items-center mx-2">
-                            <Box sx={{flexGrow: 0}}>
-                                <Tooltip title="Configurações">
-                                    <IconButton onClick={handleOpenUserMenu} sx={{p: 0}}>
-                                        <i style={{fontSize: 16}} className="text-primary fas fa-user-cog"/>
-                                    </IconButton>
-                                </Tooltip>
-                                <Menu
-                                    sx={{mt: '20px'}}
-                                    anchorEl={anchorElUser}
-                                    anchorOrigin={{
-                                        vertical: 'top',
-                                        horizontal: 'right',
-                                    }}
-                                    keepMounted
-                                    transformOrigin={{
-                                        vertical: 'top',
-                                        horizontal: 'right',
-                                    }}
-                                    open={Boolean(anchorElUser)}
-                                    onClose={handleCloseUserMenu}
-                                >
-                                    {settings.map(({title, url}, i) => (
-                                        <a key={i} href={url}>
-                                            <MenuItem onClick={handleCloseUserMenu}>
-                                                {title}
+                            <li className="nav-item d-flex align-items-center mx-2">
+                                <Box sx={{flexGrow: 0}}>
+                                    <Tooltip title="Configurações">
+                                        <IconButton onClick={handleOpenUserMenu} sx={{p: 0}}>
+                                            <i style={{fontSize: 16}} className="text-primary fas fa-user-cog"/>
+                                        </IconButton>
+                                    </Tooltip>
+                                    <Menu
+                                        sx={{mt: '20px'}}
+                                        anchorEl={anchorElUser}
+                                        anchorOrigin={{
+                                            vertical: 'top',
+                                            horizontal: 'right',
+                                        }}
+                                        keepMounted
+                                        transformOrigin={{
+                                            vertical: 'top',
+                                            horizontal: 'right',
+                                        }}
+                                        open={Boolean(anchorElUser)}
+                                        onClose={handleCloseUserMenu}
+                                    >
+                                        {settings.map(({title, url}, i) => (
+                                            <a key={i} href={url}>
+                                                <MenuItem onClick={handleCloseUserMenu}>
+                                                    {title}
+                                                </MenuItem>
+                                            </a>
+                                        ))}
+                                        <div onClick={() => logout()} style={{minWidth: 150}}>
+                                            <MenuItem key="Sair" onClick={handleCloseUserMenu}>
+                                                Sair
                                             </MenuItem>
-                                        </a>
-                                    ))}
-                                    <div onClick={() => logout()} style={{minWidth: 150}}>
-                                        <MenuItem key="Sair" onClick={handleCloseUserMenu}>
-                                            Sair
-                                        </MenuItem>
-                                    </div>
-                                </Menu>
-                            </Box>
-                        </li>
-                    </ul>
+                                        </div>
+                                    </Menu>
+                                </Box>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
+
+
+            {/*</div>*/}
         </nav>
     )
 }

@@ -11,4 +11,7 @@ Route::name('admin.')
 
         Route::post('sinistros-update-status/{id}/{status}', [SinistroController::class, 'updateStatus'])
             ->name('sinistros-update-status');
+
+        Route::get('sinistros-pacote/{id}', [SinistroController::class, 'showPacote'])
+            ->name('sinistros-pacote');
     });

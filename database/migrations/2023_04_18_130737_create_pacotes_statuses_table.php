@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('pacotes_statuses', function (Blueprint $table) {
             $table->id();
-            $table->string('chave', 64);
             $table->string('valor', 64);
             $table->string('descricao');
             $table->timestamps();

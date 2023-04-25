@@ -4,7 +4,7 @@ import HistoricoPacote from "@/Components/Dados/HistoricoPacote";
 
 export default function ({pacote, historico}) {
     return (
-        <Layout container="Pacote" titlePage="Informações do Pacote" menu="pacote" submenu="cadastrados"
+        <Layout container="Pacote" titlePage="Informações do Pacote" menu="pacotes" submenu="cadastrados"
                 voltar={route('admin.pacotes.index')}>
 
             <div className="row row-cols-2">
@@ -17,8 +17,11 @@ export default function ({pacote, historico}) {
             </div>
             <div className="row">
                 <div className="col-auto">
+                {pacote.sinistro === 0 ?
                     <a className="btn btn-danger"
                        href={route('admin.sinistros.create', {id: pacote.id})}>Abrir Sinistro</a>
+                 : <a className="btn btn-primary"
+                      href={route('admin.sinistros-pacote', pacote.id)}>Ver Sinistro</a>}
                 </div>
             </div>
         </Layout>
