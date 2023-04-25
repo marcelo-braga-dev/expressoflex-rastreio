@@ -24,10 +24,11 @@ export default function ({pacotes, status}) {
         <Layout container titlePage="Pacotes" menu="pacotes" submenu="cadastrados">
             <div className="row justify-content-between">
                 <div className="col-auto">
-                    <TextField size="small" onChange={e => pesquisar(e.target.value)}/>
+                    <a className="btn btn-primary" href={route('admin.pacotes.create')}>Cadastrar Pacote</a>
                 </div>
                 <div className="col-auto">
-                    <a className="btn btn-primary" href={route('admin.pacotes.create')}>Cadastrar Pacote</a>
+                    <small className="d-block">Link de pesquisa:</small>
+                    <small className="d-block">{route('clientes.pesquisa')}</small>
                 </div>
             </div>
             <div className="table-responsive">

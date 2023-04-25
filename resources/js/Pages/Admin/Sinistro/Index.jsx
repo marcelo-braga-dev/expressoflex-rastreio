@@ -3,6 +3,12 @@ import Layout from "@/Layouts/Admin/Layout";
 export default function ({sinistros}) {
     return (
         <Layout container titlePage="Sinistros" menu="sinistros">
+            <div className="row justify-content-end">
+            <div className="col-auto">
+                <small className="d-block"><b>Link de pesquisa:</b></small>
+                <small className="d-block">{route('clientes.pesquisa')}</small>
+            </div>
+        </div>
             <div className="table-responsive">
                 <table className="table table-hover">
                     <thead>
