@@ -75,15 +75,7 @@ class Sinistros extends Model
         $dados = $this->newQuery()->find($id);
         $status = (new SinistrosStatus())->nomes();
 
-        return [
-            'id_pacote' => $dados->pacotes_id,
-            'motoboy' => $dados->motoboy,
-            'reembolso' => convert_float_money($dados->reembolso),
-            'data' => date('d/m/y H:i', strtotime($dados->data)),
-            'anotacoes' => $dados->anotacoes,
-            'status' => $status[$dados->status] ?? '-',
-            'status_id' => $dados->status,
-        ];
+        return $this->dados($dados, $status);
     }
 
     public function idSinistroPeloPacote($idpacote)
@@ -95,11 +87,12 @@ class Sinistros extends Model
 
     public function remover($id)
     {
-        $dados = $this->find($id);
+        //$dados = $this->find($id);
 
         $this->newQuery()
             ->find($id)
             ->delete();
+
         (new Pacotes())->updateSinistro($dados['id_pacote'], false);
     }
 
@@ -107,6 +100,7 @@ class Sinistros extends Model
     {
         return [
             'id' => $item->id,
+            'id_pacote' => $item->pacotes_id,
             'codigo' => $item->codigo,
             'reembolso' => convert_float_money($item->reembolso),
             'vendedor' => (new Pacotes())->newQuery()->find($item->pacotes_id)->nome_vendedor ?? '-',
@@ -126,5 +120,16 @@ class Sinistros extends Model
         if (!$sinistro) return [];
 
         return (new Pacotes())->find($sinistro->pacotes_id);
+    }
+
+    public function pacote($id)
+    {
+        $status = (new SinistrosStatus())->nomes();
+
+        $dados = $this->newQuery()
+            ->where('pacotes_id', $id)
+            ->first();
+
+        return $this->dados($dados, $status);
     }
 }

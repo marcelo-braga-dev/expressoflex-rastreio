@@ -25,8 +25,9 @@ class SinistroController extends Controller
 
     public function show($id)
     {
-        $pacote = (new Pacotes())->find($id);
         $sinistro = (new Sinistros())->find($id);
+
+        $pacote = (new Pacotes())->find($sinistro['id_pacote']);
         $historico = (new SinistrosHistoricos())->historico($id);
         $status = (new SinistrosStatus())->status();
         $anexos = (new SinistrosAnexos())->anexos($id);

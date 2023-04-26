@@ -1,11 +1,15 @@
+import ImagePdf from "@/Components/Inputs/ImagePdf";
+
 export default function SinistroAnexos({dados}) {
     return (
-        dados.map((item, index) => {
-            return (
-                <div key={index} className="row m-2 mb-4">
-                    <img alt="img" src={item.url}/>
-                </div>
-            )
-        })
+        <div className="row row-cols-2">
+            {dados.map((item, index) => {
+                return (
+                    <div key={index} className="col">
+                        <ImagePdf url={item.url}/>
+                    </div>
+                )
+            })}
+        </div>
     )
 }

@@ -63,6 +63,7 @@ export default function ({sinistros, status}) {
     const linhas = sinistros.map(function (items) {
         return {
             id: items.id,
+            id_pacote: items.id_pacote,
             data: items.data,
             codigo: items.codigo,
             motoboy: items.motoboy,

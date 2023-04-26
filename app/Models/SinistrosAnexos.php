@@ -17,14 +17,16 @@ class SinistrosAnexos extends Model
 
     public function create($id, $dados)
     {
-        foreach ($dados->anexos as $item) {
-            $url = (new UploadImagensServices())->uploadArray($item, 'sinistros/' . $id);
+        if ($dados->anexos) {
+            foreach ($dados->anexos as $item) {
+                $url = (new UploadImagensServices())->uploadArray($item, 'sinistros/' . $id);
 
-            $this->newQuery()
-                ->create([
-                    'sinistros_id' => $id,
-                    'valor' => $url,
-                ]);
+                $this->newQuery()
+                    ->create([
+                        'sinistros_id' => $id,
+                        'valor' => $url,
+                    ]);
+            }
         }
     }
 

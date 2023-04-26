@@ -75,6 +75,7 @@ export default function ({pacote, historico, status, sinistro, anexos}) {
                 </div>
             </div>
 
+            {/*MODAL EXCLUIR*/}
             <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel"
                  aria-hidden="true">
                 <div className="modal-dialog">

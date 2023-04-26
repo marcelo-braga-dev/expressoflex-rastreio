@@ -123,7 +123,7 @@ export default function ({pacotes, status}) {
             sortable: true,
         }, {
             name: '',
-            selector: row => <a className="btn btn-primary btn-sm py-1 px-2 m-0"
+            selector: row => <a className="btn btn-primary btn-sm py-1 px-3 m-0"
                                 href={route('admin.pacotes.show', row.id)}>Ver</a>,
             sortable: false,
         },
