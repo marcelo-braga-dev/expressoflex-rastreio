@@ -7,7 +7,7 @@ import {useForm} from "@inertiajs/react";
 import DataTable from 'react-data-table-component';
 
 const FilterComponent = ({filterText, onFilter, setFiltro, status, setStatusFiltro}) => (
-    <div className="row justify-content-end w-100 g-md-6">
+    <div className="row justify-content-end g-md-6">
         <div className="col-12 col-md-auto mb-3">
             <TextField style={{width: 180}}
                        select label="Status" size="small" defaultValue=""

@@ -5,7 +5,7 @@ export default function SinistroAnexos({dados}) {
         <div className="row row-cols-2">
             {dados.map((item, index) => {
                 return (
-                    <div key={index} className="col">
+                    <div key={index} className="col mb-4">
                         <ImagePdf url={item.url}/>
                     </div>
                 )
