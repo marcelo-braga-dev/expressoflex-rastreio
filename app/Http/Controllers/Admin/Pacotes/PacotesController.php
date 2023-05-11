@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Pacotes;
 use App\Models\PacotesHistoricos;
 use App\Models\PacotesStatus;
+use App\Models\Sinistros;
 use App\src\Pacotes\CodigoPacote;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -24,10 +25,11 @@ class PacotesController extends Controller
     public function show($id)
     {
         $pacote = (new Pacotes())->find($id);
+        $sinistro = (new Sinistros())->dadosPeloIdPacote($id);
         $historico = (new PacotesHistoricos())->historico($id);
 
         return Inertia::render('Admin/Pacotes/Show',
-            compact('pacote', 'historico'));
+            compact('pacote', 'historico', 'sinistro'));
     }
 
     public function create()

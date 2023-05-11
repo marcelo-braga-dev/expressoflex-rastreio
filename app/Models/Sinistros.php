@@ -87,13 +87,14 @@ class Sinistros extends Model
 
     public function remover($id)
     {
-        //$dados = $this->find($id);
+        $dados = $this->newQuery()
+            ->find($id);
 
         $this->newQuery()
             ->find($id)
             ->delete();
 
-        (new Pacotes())->updateSinistro($dados['id_pacote'], false);
+        (new Pacotes())->updateSinistro($dados->pacotes_id, false);
     }
 
     private function dados($item, $status): array

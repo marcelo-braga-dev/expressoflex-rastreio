@@ -17,7 +17,7 @@ export default function ({pacote, historico, status, sinistro, anexos}) {
     }
 
     function destroy() {
-        router.post(route('admin.sinistros.destroy', pacote.id), {
+        router.post(route('admin.sinistros.destroy', sinistro.id), {
             '_method': 'delete'
         })
     }
@@ -52,7 +52,7 @@ export default function ({pacote, historico, status, sinistro, anexos}) {
                                        defaultValue={sinistro.status_id}
                                        fullWidth
                                        value={sinistro.status_id}
-                                       onChange={e => updateStatus(pacote.id, e.target.value)}>
+                                       onChange={e => updateStatus(sinistro.id, e.target.value)}>
                                 {status.map((item, index) => {
                                     return (
                                         <MenuItem key={index} value={item.id}>{item.nome}</MenuItem>

@@ -2,7 +2,7 @@ import Layout from "@/Layouts/Admin/Layout";
 import DadosPacote from "@/Components/Dados/DadosPacote";
 import HistoricoPacote from "@/Components/Dados/HistoricoPacote";
 
-export default function ({pacote, historico}) {
+export default function ({pacote, sinistro, historico}) {
     return (
         <Layout container="Pacote" titlePage="Informações do Pacote" menu="pacotes" submenu="cadastrados"
                 voltar={route('admin.pacotes.index')}>
@@ -21,7 +21,7 @@ export default function ({pacote, historico}) {
                         <a className="btn btn-danger"
                            href={route('admin.sinistros.create', {id: pacote.id})}>Abrir Sinistro</a>
                         : <a className="btn btn-primary"
-                             href={route('admin.sinistros.show', pacote.sinistro)}>Ver Sinistro</a>}
+                             href={route('admin.sinistros.show', sinistro.id)}>Ver Sinistro</a>}
                 </div>
             </div>
         </Layout>
