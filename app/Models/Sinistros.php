@@ -57,7 +57,7 @@ class Sinistros extends Model
             ->where('pacotes_id', $idPacote)
             ->first();
 
-        return $this->dados($dados, $status);
+        return $dados ? $this->dados($dados, $status) : null;
     }
 
     public function updateStatus($id, $status)
